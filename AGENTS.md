@@ -295,3 +295,45 @@
   - `node --import tsx scripts/release-check.ts`
   - `pnpm release:check`
   - `pnpm test:install:smoke` or `OPENCLAW_INSTALL_SMOKE_SKIP_NONROOT=1 pnpm test:install:smoke` for non-root smoke path.
+
+---
+
+## BizPilot - Project-Specific Guidelines
+
+> BizPilot is a product built on top of this OpenClaw fork. See `PROJECT-BIBLE.md` for full project details.
+
+### Fork Management
+
+- **Origin**: github.com/alexdang333/openclaw (our fork)
+- **Upstream**: github.com/openclaw/openclaw (original)
+- Weekly upstream review: `git fetch upstream && git log --oneline main..upstream/main`
+- Tag stable merges: `git tag bizpilot-v0.X.Y`
+- Security check before merge: review deps, `npm audit`, verify our extensions
+
+### Our Code Directories
+
+```
+extensions/facebook/           # Facebook Messenger + Instagram DM channel
+extensions/bizpilot-tools/     # Custom tools (product-search, save-lead, escalate, etc.)
+bizpilot/                      # Configs, onboarding scripts, tenant management
+PROJECT-BIBLE.md               # Full project specification
+```
+
+**Rule**: Keep BizPilot code in these directories only. Minimize changes to OpenClaw core to reduce merge conflicts.
+
+### Tech Stack
+
+| Layer          | Technology                            |
+| -------------- | ------------------------------------- |
+| Agent platform | OpenClaw (this repo)                  |
+| Database       | Supabase (PostgreSQL + Storage + RLS) |
+| Hosting        | Railway                               |
+| DNS/CDN        | Cloudflare                            |
+| CI/CD          | GitHub Actions                        |
+
+### Development Patterns
+
+- Follow `extensions/zalo/` as reference pattern for channel extensions
+- Custom tools via `registerTool()` from `openclaw/plugin-sdk`
+- Multi-tenant: 1 agent per business, data isolated via Supabase RLS
+- Channel-to-agent routing via bindings
