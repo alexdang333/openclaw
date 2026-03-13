@@ -81,3 +81,35 @@
 - **Context**: "AI replaces your employee" creates resistance. Need honest, positive framing
 - **Decision**: "AI assistant that makes your admin 3-4x more productive" — 1 person + BizPilot = productivity of 3-4 people
 - **Status**: Final
+
+## D011: Security — First-Class Priority
+
+- **Date**: 2026-03-12
+- **Context**: BizPilot handles sensitive business data (customer PII, Facebook tokens, product catalogs, leads). A breach would destroy trust and the business
+- **Decision**: Security is considered at every step — code, architecture, dependencies, deployment
+- **Principles**:
+  - Least privilege for all API tokens and permissions
+  - Secrets in environment variables, never in code or logs
+  - Supabase RLS on every table, no exceptions
+  - Facebook/channel tokens encrypted at rest, scoped minimally
+  - Dependency audit before adding, upstream review before merging
+  - OWASP top 10 checks on every code change
+  - Input validation at all system boundaries
+  - Proactively flag security concerns, don't wait to be asked
+- **Status**: Permanent — applies to all future decisions
+
+## D012: Separate Supabase Project
+
+- **Date**: 2026-03-12
+- **Context**: Already had an existing Supabase project (bdsx). Could reuse or create new
+- **Decision**: Create separate `bizpilot` project — separate credentials, clean schema, no data leakage risk
+- **Alternatives rejected**: Reuse existing project (shared credentials, risk of accidental data exposure)
+- **Status**: Final
+
+## D013: Agent Uses Service Role Key
+
+- **Date**: 2026-03-12
+- **Context**: Need to decide how the OpenClaw agent accesses Supabase — anon key (with RLS) or service role (bypasses RLS)
+- **Decision**: Service role key for the agent backend (it manages all tenants). Anon key reserved for future web dashboard (per-tenant access)
+- **Risk mitigation**: Service role key stored in env vars only, never in code or logs
+- **Status**: Final
