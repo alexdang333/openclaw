@@ -20,6 +20,7 @@ RUN pnpm install --frozen-lockfile && \
     pnpm build:docker || pnpm build
 
 # Prune dev deps for smaller image
+ENV CI=true
 RUN pnpm prune --prod
 
 RUN ln -sf /app/openclaw.mjs /usr/local/bin/openclaw && chmod 755 /app/openclaw.mjs
