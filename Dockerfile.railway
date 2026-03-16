@@ -32,10 +32,5 @@ RUN mkdir -p /root/.openclaw && \
 ENV NODE_ENV=production
 ENV OPENCLAW_CONFIG_PATH=/root/.openclaw/openclaw.json
 
-# Debug: print diagnostics then try gateway
-CMD echo "=== BizPilot Debug ===" && \
-    echo "Node: $(node -v)" && \
-    echo "PORT: ${PORT:-18789}" && \
-    ls /app/dist/entry.* 2>&1 || true && \
-    echo "=== Starting gateway ===" && \
-    exec node openclaw.mjs gateway --bind lan --allow-unconfigured --port ${PORT:-18789}
+# Railway sets PORT env var; gateway must listen on it
+CMD exec node openclaw.mjs gateway --bind lan --allow-unconfigured --port ${PORT:-18789}
