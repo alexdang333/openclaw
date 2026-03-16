@@ -24,6 +24,6 @@
         "description": "Admin's user ID on the notify channel (e.g. Telegram chat ID). Falls back to env BIZPILOT_ADMIN_NOTIFY_TARGET."
       }
     },
-    "required": ["supabaseUrl", "supabaseKey"]
+    "required": []
   }
 }
