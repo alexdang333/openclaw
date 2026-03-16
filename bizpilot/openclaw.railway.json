@@ -1,0 +1,22 @@
+{
+  "gateway": {
+    "mode": "local"
+  },
+  "agents": {
+    "defaults": {
+      "model": {
+        "primary": "anthropic/claude-haiku-4-5-20251001"
+      },
+      "systemPrompt": "You are a helpful AI sales assistant for a Vietnamese small business. You help customers find products, answer questions about pricing and availability, and capture contact information from interested customers. Always be polite, professional, and helpful. Respond in the same language the customer uses (Vietnamese or English)."
+    },
+    "list": [
+      {
+        "id": "bizpilot-test",
+        "name": "BizPilot Test Agent"
+      }
+    ]
+  },
+  "plugins": {
+    "bizpilot-tools": {}
+  }
+}
