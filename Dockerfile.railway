@@ -42,7 +42,7 @@ RUN mkdir -p /root/.openclaw && \
     cp /app/bizpilot/openclaw.railway.json /root/.openclaw/openclaw.json
 
 ENV NODE_ENV=production
-ENV NODE_OPTIONS="--max-old-space-size=768"
+ENV NODE_OPTIONS="--max-old-space-size=2048"
 ENV OPENCLAW_CONFIG_PATH=/root/.openclaw/openclaw.json
 
 # Railway sets PORT env var; gateway must listen on it
