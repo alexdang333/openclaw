@@ -23,6 +23,14 @@ RUN pnpm install --frozen-lockfile && \
 ENV CI=true
 RUN pnpm prune --prod
 
+# Remove unused extensions to reduce memory footprint
+RUN cd /app/extensions && \
+    find . -maxdepth 1 -mindepth 1 -type d \
+      ! -name facebook \
+      ! -name bizpilot-tools \
+      ! -name shared \
+      -exec rm -rf {} +
+
 RUN ln -sf /app/openclaw.mjs /usr/local/bin/openclaw && chmod 755 /app/openclaw.mjs
 
 # Set up config for Railway
