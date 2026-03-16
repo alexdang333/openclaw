@@ -17,7 +17,16 @@ COPY . .
 
 # Install + build
 RUN pnpm install --no-frozen-lockfile
-RUN pnpm build:docker
+# Run build:docker steps individually, skipping canvas-a2ui-copy (not needed for gateway)
+RUN node scripts/tsdown-build.mjs && \
+    node scripts/copy-plugin-sdk-root-alias.mjs && \
+    pnpm build:plugin-sdk:dts && \
+    node --import tsx scripts/write-plugin-sdk-entry-dts.ts && \
+    node --import tsx scripts/copy-hook-metadata.ts && \
+    node --import tsx scripts/copy-export-html-templates.ts && \
+    node --import tsx scripts/write-build-info.ts && \
+    node --import tsx scripts/write-cli-startup-metadata.ts && \
+    node --import tsx scripts/write-cli-compat.ts
 
 # Prune dev deps for smaller image
 ENV CI=true
