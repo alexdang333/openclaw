@@ -16,8 +16,8 @@ WORKDIR /app
 COPY . .
 
 # Install + build
-RUN pnpm install --frozen-lockfile && \
-    pnpm build:docker || pnpm build
+RUN pnpm install --no-frozen-lockfile
+RUN pnpm build:docker
 
 # Prune dev deps for smaller image
 ENV CI=true
