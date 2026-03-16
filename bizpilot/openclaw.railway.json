@@ -1,6 +1,9 @@
 {
   "gateway": {
-    "mode": "local"
+    "mode": "local",
+    "controlUi": {
+      "dangerouslyAllowHostHeaderOriginFallback": true
+    }
   },
   "agents": {
     "defaults": {
