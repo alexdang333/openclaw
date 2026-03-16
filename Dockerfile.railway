@@ -24,11 +24,15 @@ ENV CI=true
 RUN pnpm prune --prod
 
 # Remove unused extensions to reduce memory footprint
+# Keep only channels we need. To add more later, add another ! -name line.
 RUN cd /app/extensions && \
     find . -maxdepth 1 -mindepth 1 -type d \
       ! -name facebook \
       ! -name bizpilot-tools \
       ! -name shared \
+      ! -name whatsapp \
+      ! -name zalo \
+      ! -name telegram \
       -exec rm -rf {} +
 
 RUN ln -sf /app/openclaw.mjs /usr/local/bin/openclaw && chmod 755 /app/openclaw.mjs
