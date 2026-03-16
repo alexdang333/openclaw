@@ -1,0 +1,34 @@
+{
+  "name": "@openclaw/instagram",
+  "version": "2026.3.11",
+  "description": "OpenClaw Instagram DM channel plugin",
+  "type": "module",
+  "dependencies": {
+    "undici": "7.24.0",
+    "zod": "^4.3.6"
+  },
+  "openclaw": {
+    "extensions": [
+      "./index.ts"
+    ],
+    "channel": {
+      "id": "instagram",
+      "label": "Instagram DM",
+      "selectionLabel": "Instagram DM (Graph API)",
+      "docsPath": "/channels/instagram",
+      "docsLabel": "instagram",
+      "blurb": "Instagram Direct Messages via Graph API.",
+      "aliases": [
+        "ig",
+        "insta"
+      ],
+      "order": 35,
+      "quickstartAllowFrom": true
+    },
+    "install": {
+      "npmSpec": "@openclaw/instagram",
+      "localPath": "extensions/instagram",
+      "defaultChoice": "npm"
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "id": "facebook",
+  "channels": ["facebook"],
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {}
+  }
+}

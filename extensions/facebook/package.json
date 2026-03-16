@@ -1,0 +1,34 @@
+{
+  "name": "@openclaw/facebook",
+  "version": "2026.3.11",
+  "description": "OpenClaw Facebook Messenger channel plugin",
+  "type": "module",
+  "dependencies": {
+    "undici": "7.24.0",
+    "zod": "^4.3.6"
+  },
+  "openclaw": {
+    "extensions": [
+      "./index.ts"
+    ],
+    "channel": {
+      "id": "facebook",
+      "label": "Facebook Messenger",
+      "selectionLabel": "Facebook Messenger (Page)",
+      "docsPath": "/channels/facebook",
+      "docsLabel": "facebook",
+      "blurb": "Facebook Messenger channel via Graph API for Pages.",
+      "aliases": [
+        "fb",
+        "messenger"
+      ],
+      "order": 30,
+      "quickstartAllowFrom": true
+    },
+    "install": {
+      "npmSpec": "@openclaw/facebook",
+      "localPath": "extensions/facebook",
+      "defaultChoice": "npm"
+    }
+  }
+}

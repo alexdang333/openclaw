@@ -1,0 +1,29 @@
+{
+  "id": "bizpilot-tools",
+  "name": "BizPilot Tools",
+  "description": "Product search, lead capture, and escalation tools for BizPilot SMB agents.",
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "supabaseUrl": {
+        "type": "string",
+        "description": "Supabase project URL (e.g. https://xxx.supabase.co)"
+      },
+      "supabaseKey": {
+        "type": "string",
+        "sensitive": true,
+        "description": "Supabase service-role key (bypasses RLS, tool enforces tenant isolation)"
+      },
+      "adminNotifyChannel": {
+        "type": "string",
+        "description": "Channel to notify admin on escalation/lead (e.g. 'telegram'). Falls back to env BIZPILOT_ADMIN_NOTIFY_CHANNEL."
+      },
+      "adminNotifyTarget": {
+        "type": "string",
+        "description": "Admin's user ID on the notify channel (e.g. Telegram chat ID). Falls back to env BIZPILOT_ADMIN_NOTIFY_TARGET."
+      }
+    },
+    "required": ["supabaseUrl", "supabaseKey"]
+  }
+}

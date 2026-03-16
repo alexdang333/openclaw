@@ -104,6 +104,14 @@
       "types": "./dist/plugin-sdk/diffs.d.ts",
       "default": "./dist/plugin-sdk/diffs.js"
     },
+    "./plugin-sdk/facebook": {
+      "types": "./dist/plugin-sdk/facebook.d.ts",
+      "default": "./dist/plugin-sdk/facebook.js"
+    },
+    "./plugin-sdk/instagram": {
+      "types": "./dist/plugin-sdk/instagram.d.ts",
+      "default": "./dist/plugin-sdk/instagram.js"
+    },
     "./plugin-sdk/feishu": {
       "types": "./dist/plugin-sdk/feishu.d.ts",
       "default": "./dist/plugin-sdk/feishu.js"

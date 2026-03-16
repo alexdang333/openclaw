@@ -1,0 +1,16 @@
+{
+  "name": "@openclaw/bizpilot-tools",
+  "version": "2026.3.11",
+  "private": true,
+  "description": "BizPilot agent tools: product search, lead capture, escalation",
+  "type": "module",
+  "dependencies": {
+    "@sinclair/typebox": "0.34.48",
+    "@supabase/supabase-js": "^2.49.0"
+  },
+  "openclaw": {
+    "extensions": [
+      "./index.ts"
+    ]
+  }
+}
