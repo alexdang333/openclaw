@@ -55,4 +55,11 @@ ENV NODE_OPTIONS="--max-old-space-size=2048"
 ENV OPENCLAW_CONFIG_PATH=/root/.openclaw/openclaw.json
 
 # Railway sets PORT env var; gateway must listen on it
-CMD exec node openclaw.mjs gateway --bind lan --allow-unconfigured --port ${PORT:-18789}
+CMD echo "NODE: $(node -v)" && \
+    echo "PORT: ${PORT:-18789}" && \
+    echo "PWD: $(pwd)" && \
+    echo "dist exists: $(test -d dist && echo true || echo false)" && \
+    echo "entry.js exists: $(test -f dist/entry.js && echo true || echo false)" && \
+    echo "entry.mjs exists: $(test -f dist/entry.mjs && echo true || echo false)" && \
+    ls dist/entry.* 2>&1 || true && \
+    exec node openclaw.mjs gateway --bind lan --allow-unconfigured --port ${PORT:-18789}
